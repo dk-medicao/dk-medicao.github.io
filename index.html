@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' https://*.supabase.co; img-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-src 'none'">
+  <title>Portal de medições</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header><h1>Portal de medições</h1><button id="sair" hidden>Sair</button></header>
+  <main>
+    <p id="mensagem" role="status" aria-live="polite"></p>
+    <section id="acesso">
+      <h2>Acesso por convite</h2>
+      <p>Use o e-mail convidado pela administração. Não há cadastro público.</p>
+      <form id="login">
+        <label>E-mail<input id="email" type="email" autocomplete="username" required maxlength="254"></label>
+        <label>Senha<input id="senha" type="password" autocomplete="current-password" required></label>
+        <button>Entrar</button>
+      </form>
+      <form id="definir-senha" hidden>
+        <label>Defina sua senha (mínimo de 12 caracteres)<input id="nova-senha" type="password" autocomplete="new-password" minlength="12" maxlength="128" required></label>
+        <button>Salvar senha do convite</button>
+      </form>
+    </section>
+    <section id="portal" hidden>
+      <label>Obra<select id="obra"></select></label>
+      <label>BM<select id="bm"></select></label>
+      <button id="recarregar">Recarregar dados</button>
+      <div id="pedido"></div>
+      <div id="boletins"></div>
+    </section>
+  </main>
+</body>
+</html>

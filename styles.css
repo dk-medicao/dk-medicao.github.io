@@ -1,0 +1,11 @@
+:root { font-family: system-ui, sans-serif; color: #172c40; background: #f2f5f7; }
+body { margin: 0; } header, main { max-width: 1100px; margin: auto; padding: 1.2rem; }
+header { display: flex; align-items: center; justify-content: space-between; }
+section, article { background: white; padding: 1.2rem; margin-bottom: 1rem; border-radius: .5rem; }
+label { display: block; margin: .7rem 0; } input, select, textarea, button { font: inherit; padding: .55rem; }
+input:not([type=file]), textarea, select { display: block; width: min(100%, 36rem); box-sizing: border-box; }
+textarea { min-height: 5rem; } button { background: #155c67; color: white; border: 0; border-radius: .25rem; cursor: pointer; margin: .25rem; }
+button:disabled { opacity: .55; cursor: wait; } button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #da9e00; outline-offset: 2px; }
+table { border-collapse: collapse; width: 100%; } th, td { border-bottom: 1px solid #d6dfe6; padding: .65rem; text-align: left; overflow-wrap: anywhere; }
+.rolagem { overflow-x: auto; } #mensagem { min-height: 1.6rem; white-space: pre-wrap; } [hidden] { display: none !important; }
+.nota { color: #485d6c; } h1 { font-size: 1.65rem; } h2 { font-size: 1.3rem; }
