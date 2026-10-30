@@ -2,5 +2,5 @@
 // A chave anon é pública; nenhuma chave de servidor pode entrar neste arquivo.
 export const CONFIG = Object.freeze({
   supabaseUrl: "https://unpisgehwnuxkiqzvcuy.supabase.co",
-  anonKey: "PREENCHER_CHAVE_ANON_PUBLICA"
+  anonKey: sb_publishable_Q2RMDPJWpfEGYOEAf6H0_Q_pTzNlmHu
 });
