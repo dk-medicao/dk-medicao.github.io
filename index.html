@@ -4,35 +4,48 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' https://*.supabase.co; img-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-src 'none'">
-  <title>Portal de medições</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' https://*.supabase.co; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-src 'none'">
+  <title>Portal de Medições · Diagnóstika Engenharia</title>
+  <link rel="icon" type="image/png" href="assets/icon.png">
   <link rel="stylesheet" href="styles.css">
   <script type="module" src="app.js"></script>
 </head>
 <body>
-  <header><h1>Portal de medições</h1><button id="sair" hidden>Sair</button></header>
+  <header class="topo">
+    <div class="topo-conteudo">
+      <img class="logo" src="assets/logo.png" alt="Diagnóstika Engenharia" width="685" height="105">
+      <div class="topo-direita">
+        <span class="selo">Portal de Medições</span>
+        <button id="sair" class="secundario" hidden>Sair</button>
+      </div>
+    </div>
+  </header>
   <main>
     <p id="mensagem" role="status" aria-live="polite"></p>
-    <section id="acesso">
-      <h2>Acesso por convite</h2>
-      <p>Use o e-mail convidado pela administração. Não há cadastro público.</p>
+    <section id="acesso" class="cartao-login">
+      <h1>Acesso ao portal</h1>
+      <p class="nota">Ambiente restrito para acompanhamento das medições da obra. Entre com o e-mail convidado pela Diagnóstika Engenharia. Não há cadastro público.</p>
       <form id="login">
         <label>E-mail<input id="email" type="email" autocomplete="username" required maxlength="254"></label>
         <label>Senha<input id="senha" type="password" autocomplete="current-password" required></label>
-        <button>Entrar</button>
+        <button class="largo">Entrar</button>
       </form>
       <form id="definir-senha" hidden>
         <label>Defina sua senha (mínimo de 12 caracteres)<input id="nova-senha" type="password" autocomplete="new-password" minlength="12" maxlength="128" required></label>
-        <button>Salvar senha do convite</button>
+        <button class="largo">Salvar senha do convite</button>
       </form>
     </section>
     <section id="portal" hidden>
-      <label>Obra<select id="obra"></select></label>
-      <label>BM<select id="bm"></select></label>
-      <button id="recarregar">Recarregar dados</button>
-      <div id="pedido"></div>
-      <div id="boletins"></div>
+      <div id="ficha" class="ficha"></div>
+      <div class="barra">
+        <label>Obra<select id="obra"></select></label>
+        <label>Boletim de medição<select id="bm"></select></label>
+        <button id="recarregar" class="secundario">Recarregar dados</button>
+      </div>
+      <div id="pedido" class="painel"></div>
+      <div id="boletins" class="painel"></div>
     </section>
   </main>
+  <footer class="rodape">Diagnóstika Engenharia · Fiscalização e gerenciamento de obras · Horários em Brasília</footer>
 </body>
 </html>

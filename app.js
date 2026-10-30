@@ -31,7 +31,7 @@ function guardarSessao(s) {
 function limparSessao() {
   estado.sessao = null; estado.pedido = null; estado.bm = null;
   $("portal").hidden = true; $("acesso").hidden = false; $("sair").hidden = true;
-  $("pedido").replaceChildren(); $("boletins").replaceChildren();
+  $("pedido").replaceChildren(); $("boletins").replaceChildren(); $("ficha").replaceChildren();
   $("login").hidden = false; $("definir-senha").hidden = true; $("senha").value = "";
 }
 async function requisicao(caminho, { method = "GET", body, binario = false, publico = false, headers = {} } = {}) {
@@ -86,8 +86,26 @@ async function carregarBms() {
   }
   await carregarPedido();
 }
+function renderFicha() {
+  const raiz = $("ficha"); raiz.replaceChildren();
+  const obra = estado.obras.find(o => o.id === $("obra").value); if (!obra) return;
+  el("p", "Obra em acompanhamento", raiz).className = "rotulo"; el("h1", obra.nome, raiz);
+  const dl = el("dl", undefined, raiz);
+  const campo = (t, v) => { const d = el("div", undefined, dl); el("dt", t, d); el("dd", v, d); };
+  campo("Contratada", "AAM Engenharia");
+  campo("Fiscalização", "Diagnóstika Engenharia");
+  if (estado.bm) {
+    const b = estado.bms.find(x => x.id === estado.bm.id); const dia = s => s.split("-").reverse().join("-");
+    if (b) campo("Período do BM " + b.numero, `${dia(b.periodo_inicio)} a ${dia(b.periodo_fim)}`);
+    campo("Prazo para envio", data(estado.bm.prazo_reenvio));
+  }
+  campo("Seu papel", responsavel() ? "Responsável pelo envio" : "Consulta");
+}
 async function carregarPedido() {
   $("pedido").replaceChildren(); $("boletins").replaceChildren();
+  try { await carregarPedidoInterno(); } finally { renderFicha(); }
+}
+async function carregarPedidoInterno() {
   if (!$("bm").value) { estado.bm = null; estado.pedido = null; el("p", "Nenhum BM aberto para esta obra.", $("pedido")); return; }
   const bs = await linhas("bms", `select=id,obra_id,numero,prazo_reenvio,eap_versao_id,versao_linha&id=eq.${encodeURIComponent($("bm").value)}&order=id`);
   estado.bm = bs[0]; if (!estado.bm) throw new Error("BM indisponível. Entre novamente.");
